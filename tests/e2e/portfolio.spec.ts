@@ -39,7 +39,8 @@ test.describe('Portfolio Wallet Management', () => {
             page.waitForResponse((response) =>
                 response.url().includes(
                     'https://portfolio-api.1inch.io/portfolio/v4/general/current_value?addresses=0xd8da6bf26964af9d7eed9e03e53415d37aa96045&use_cache=true'
-                ) && response.status() === 200
+                ) && response.status() === 200,
+                {timeout: 5000}
             ),
         ]);
         const portfolioResponseBody = await portfolioRequest.json();
