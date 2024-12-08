@@ -15,11 +15,13 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install
-      - name: Run tests
+      - name: Run API tests
         env:
           API_KEY: ${{ secrets.API_KEY }}
         run: |
           pnpm run test:api
+      - name: Run E2E Test
+        run: pnpm run test:e2e
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

@@ -15,7 +15,7 @@
     "test-ui-mode": "pnpm playwright test --ui",
     "test-chromium": "pnpm playwright test --project chromium --headed",
     "test:api": "pnpm playwright test tests/api --project=api",
-    "test:e2e": "pnpm exec playwright test",
+    "test:e2e": "pnpm exec playwright test --project chromium",
     "test": "pnpm run test:api && pnpm run test:e2e"
   }
 }
