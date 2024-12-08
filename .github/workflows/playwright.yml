@@ -29,6 +29,14 @@ jobs:
     needs: install-dependencies
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Run API tests
         env:
           API_KEY: ${{ secrets.API_KEY }}
@@ -46,6 +54,14 @@ jobs:
     needs: install-dependencies
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Run E2E tests
         run: pnpm run test:e2e
       - name: Upload E2E test results
@@ -61,6 +77,14 @@ jobs:
     needs: [run-api-tests, run-e2e-tests]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Show test report
         run: pnpm run report
       - name: Upload Playwright report
