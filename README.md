@@ -31,12 +31,12 @@ Ensure the following tools are installed:
 
 1.	Clone the repository:
 
-    git clone https://github.com/zhukoff-av/1inch.git
-    cd 1inch
+		git clone https://github.com/zhukoff-av/1inch.git
+		cd 1inch
 
 2.	Install dependencies:
     
-    pnpm install
+		pnpm install
 
 ---
 
