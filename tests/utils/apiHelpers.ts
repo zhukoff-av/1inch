@@ -3,9 +3,9 @@ import {API_KEY} from './envConfig';
 import fetch from 'node-fetch'
 
 export const sendGetRequest = async (request: APIRequestContext, url: string, token: string = API_KEY) => {
-    const response = await request.get(url, {
+    const [response] = await Promise.all([request.get(url, {
         headers: {Authorization: `Bearer ${token}`},
-    });
+    })]);
     return response;
 };
 

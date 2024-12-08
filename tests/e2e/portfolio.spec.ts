@@ -37,15 +37,15 @@ test.describe('Portfolio Wallet Management', () => {
         // Validate Portfolio API Request
         const [portfolioRequest] = await Promise.all([
             page.waitForResponse((response) =>
-                response.url().includes(
-                    'https://portfolio-api.1inch.io/portfolio/v4/general/current_value?addresses=0xd8da6bf26964af9d7eed9e03e53415d37aa96045&use_cache=true'
-                ) && response.status() === 200,
+                    response.url().includes(
+                        'https://portfolio-api.1inch.io/portfolio/v4/general/current_value?addresses=0xd8da6bf26964af9d7eed9e03e53415d37aa96045&use_cache=true'
+                    ) && response.status() === 200,
                 {timeout: 5000}
             ),
         ]);
         const portfolioResponseBody = await portfolioRequest.json();
         const valueUsd = portfolioResponseBody.result[0].value_usd;
-        const formattedValueUsd = ` $${Math.round(valueUsd).toLocaleString('fr-FR')}`;
+        const formattedValueUsd = `$${Math.round(valueUsd).toLocaleString('fr-FR')}`;
 
         // Check wallet was added successfully in header.
         await expect(portfolio.accountButtonLabel).toContainText(wallet1);
@@ -58,47 +58,47 @@ test.describe('Portfolio Wallet Management', () => {
     });
 
     // OPTIONAL SCENARIOS
-    test('Remove wallet address from the list', async ({page}) => {
+    test('Remove wallet address from the list', async () => {
+        // Connect the wallet
         await portfolio.connectWallet();
 
+        // Add a wallet and log the action
         await portfolio.addWallet(wallet1);
-        console.log(`Added wallet: ${wallet1}`);
 
+        // Remove the wallet and verify it's no longer in the list
         await portfolio.openAccountDropdown();
-        await portfolio.removeWallet(wallet1);
-
+        await portfolio.removeWallet();
         await portfolio.verifyWalletNotInList(wallet1);
     });
 
     test('Verify wallet cache persists after page refresh', async ({page}) => {
         await portfolio.connectWallet();
 
-        await portfolio.addWallet(wallet1, 0);
-        console.log(`Added wallet: ${wallet1}`);
+        // Add the first wallet and verify its presence
+        await portfolio.addWallet(wallet1);
         await expect(portfolio.accountButtonLabel).toContainText(wallet1);
 
+        // Reload the page and verify the wallet is still present
         await page.reload({timeout: 5000});
         await expect(portfolio.accountButtonLabel).toContainText(wallet1);
     })
 
 
     test('Add two wallet addresses and verify visibility', async ({page}) => {
-        await portfolio.acceptCookies(page);
+        // Setup
+        await portfolio.acceptCookies();
         await portfolio.connectWallet();
 
+        // Add first wallet and verify
         await portfolio.addWallet(wallet1);
-
         const headerDropdown = page.getByRole('button', {name: wallet1});
         await headerDropdown.click();
 
-        await portfolio.addWallet(wallet2, 0);
+        // Add second wallet
+        await portfolio.addWallet(wallet2);
 
+        // Verify both wallets are visible
         await portfolio.verifyWalletsVisible([wallet1, wallet2]);
-
-        console.log('Both wallets are visible in the list.');
     });
 
-    // Check the link. redirect to the portfolio
-
-    // Check invalid
 });
