@@ -20,6 +20,9 @@ devDependencies:
   node-fetch:
     specifier: ^3.3.2
     version: 3.3.2
+  playwright:
+    specifier: ^1.49.0
+    version: 1.49.0
 
 packages:
 

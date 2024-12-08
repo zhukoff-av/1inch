@@ -1,6 +1,6 @@
 # 1inch API and E2E Testing Project
 
-![Build Status](https://github.com/zhukoff-av/1inch/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/zhukoff-av/1inch/actions/workflows/playwright.yml/badge.svg)
 
 This repository contains a project for testing the 1inch API and includes end-to-end (E2E) tests for validating functionality across the system. It is designed to demonstrate practical test automation skills, leveraging modern tools and best practices.
 
