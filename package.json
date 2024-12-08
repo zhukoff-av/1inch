@@ -1,0 +1,17 @@
+{
+  "name": "1inch",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.1",
+    "dotenv": "^16.4.7",
+    "esm": "^3.2.25",
+    "node-fetch": "^3.3.2"
+  },
+  "scripts": {
+    "report": "pnpm exec playwright show-report",
+    "test-ui-mode": "pnpm playwright test --ui",
+    "test-chromium": "pnpm playwright test --project chromium --headed"
+  }
+}
