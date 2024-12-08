@@ -35,7 +35,7 @@ Ensure the following tools are installed:
     cd 1inch
 
 2.	Install dependencies:
-
+    
     pnpm install
 
 ---
