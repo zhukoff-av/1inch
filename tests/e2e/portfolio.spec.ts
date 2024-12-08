@@ -91,7 +91,7 @@ test.describe('Portfolio Wallet Management', () => {
         const headerDropdown = page.getByRole('button', {name: wallet1});
         await headerDropdown.click();
 
-        await portfolio.addWallet(wallet2, 1);
+        await portfolio.addWallet(wallet2, 0);
 
         await portfolio.verifyWalletsVisible([wallet1, wallet2]);
 
